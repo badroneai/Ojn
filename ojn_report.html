@@ -28,6 +28,18 @@
             .shadow-lg, .shadow-md { box-shadow: none !important; border: 1px solid #ddd; }
             .print-break { page-break-before: always; }
         }
+        /* المقارنة التنافسية على الجوال: عرض كبطاقات بدون تمرير أفقي */
+        @media (max-width: 767px) {
+            .comparison-wrap { overflow: visible; -webkit-overflow-scrolling: unset; }
+            .comparison-table { display: block; }
+            .comparison-table thead { display: none; }
+            .comparison-table tbody { display: block; }
+            .comparison-table tr { display: block; margin-bottom: 1rem; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 0.75rem; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+            .comparison-table td { display: block; text-align: right; padding: 0.35rem 0; border: none; }
+            .comparison-table td::before { content: attr(data-label); font-weight: 700; color: #3e2723; display: inline-block; min-width: 6rem; margin-left: 0.5rem; }
+            .comparison-table td:first-child { font-weight: 600; font-size: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #f3f4f6; margin-bottom: 0.25rem; }
+            .comparison-table td:first-child::before { display: none; }
+        }
     </style>
 </head>
 <body class="antialiased pb-12">
@@ -89,8 +101,8 @@
         <!-- 3. جدول المقارنة -->
         <div class="bg-white rounded-2xl shadow-md p-6 mb-8 print-break">
             <h2 class="text-2xl font-bold brand-dark mb-6"><i class="fas fa-table ml-2 brand-primary"></i>٣. المقارنة التنافسية الشاملة</h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm text-right">
+            <div class="comparison-wrap overflow-x-auto md:overflow-visible">
+                <table class="comparison-table w-full text-sm text-right">
                     <thead class="bg-brand-light text-brand-dark">
                         <tr>
                             <th class="px-4 py-3 rounded-tr-lg">الكافيه</th>
@@ -104,29 +116,29 @@
                     <tbody>
                         <!-- Ojn Row -->
                         <tr class="bg-brand-primary bg-opacity-10 border-b-2 border-brand-primary font-bold">
-                            <td class="px-4 py-3 flex items-center"><img src="https://lh3.googleusercontent.com/p/AF1QipNcw0inYmmDuxFIcmftdYOg1mRKMJ4x5kQqDNT2=s1360-w1360-h1020-rw" class="w-6 h-6 rounded-full ml-2"> أوجن Ojn</td>
-                            <td class="px-4 py-3 text-red-600">3.9 <i class="fas fa-star text-xs"></i></td>
-                            <td class="px-4 py-3">878</td>
-                            <td class="px-4 py-3">٢٠–٤٠</td>
-                            <td class="px-4 py-3">الريان</td>
-                            <td class="px-4 py-3">حلويات فاخرة + قهوة مختصة</td>
+                            <td class="px-4 py-3 flex items-center" data-label="الكافيه"><img src="https://lh3.googleusercontent.com/p/AF1QipNcw0inYmmDuxFIcmftdYOg1mRKMJ4x5kQqDNT2=s1360-w1360-h1020-rw" class="w-6 h-6 rounded-full ml-2"> أوجن Ojn</td>
+                            <td class="px-4 py-3 text-red-600" data-label="التقييم">3.9 <i class="fas fa-star text-xs"></i></td>
+                            <td class="px-4 py-3" data-label="المراجعات">878</td>
+                            <td class="px-4 py-3" data-label="السعر">٢٠–٤٠</td>
+                            <td class="px-4 py-3" data-label="الحي">الريان</td>
+                            <td class="px-4 py-3" data-label="أبرز نقطة قوة">حلويات فاخرة + قهوة مختصة</td>
                         </tr>
                         <!-- Competitors -->
-                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3">١. نمق Namq</td><td class="px-4 py-3 text-green-600">4.4</td><td class="px-4 py-3">2,946</td><td class="px-4 py-3">٢٠–٤٠</td><td class="px-4 py-3">النهضة</td><td class="px-4 py-3 text-gray-600">علامة قوية، محمصة، ٢١٣ ألف متابع</td></tr>
-                        <tr class="border-b hover:bg-gray-50 bg-gray-50"><td class="px-4 py-3">٢. بوق</td><td class="px-4 py-3 text-green-600">4.3</td><td class="px-4 py-3">2,249</td><td class="px-4 py-3">-</td><td class="px-4 py-3">أبو بكر الصديق</td><td class="px-4 py-3 text-gray-600">وافل متنوع، قهوة اليوم مميزة</td></tr>
-                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3">٣. كانتو CANTO</td><td class="px-4 py-3 text-green-600">4.7</td><td class="px-4 py-3">1,501</td><td class="px-4 py-3">١–٢٠</td><td class="px-4 py-3">الأمير سلطان</td><td class="px-4 py-3 text-gray-600">سعر اقتصادي، فروع، إسبرسو ممتاز</td></tr>
-                        <tr class="border-b hover:bg-gray-50 bg-gray-50"><td class="px-4 py-3">٤. بريو BRIO</td><td class="px-4 py-3 text-green-600">4.4</td><td class="px-4 py-3">888</td><td class="px-4 py-3">٢٠–٤٠</td><td class="px-4 py-3">أبو بكر الصديق</td><td class="px-4 py-3 text-gray-600">قهوة فخمة وحلى راقي، ٣ فروع</td></tr>
-                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3">٥. نورد كافيه</td><td class="px-4 py-3 text-green-600">4.5</td><td class="px-4 py-3">898</td><td class="px-4 py-3">٢٠–٤٠</td><td class="px-4 py-3">الريان</td><td class="px-4 py-3 text-gray-600">بسبوسة مميزة، مكان رايق</td></tr>
-                        <tr class="border-b hover:bg-gray-50 bg-gray-50"><td class="px-4 py-3">٦. فكت Vekt</td><td class="px-4 py-3 text-green-600">4.7</td><td class="px-4 py-3">833</td><td class="px-4 py-3">١–٢٠</td><td class="px-4 py-3">الملك سلمان</td><td class="px-4 py-3 text-gray-600">كوكيز مشهور، سعر منخفض</td></tr>
-                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3">٧. سمراء كافيه</td><td class="px-4 py-3 text-yellow-600">4.0</td><td class="px-4 py-3 font-bold">4,057</td><td class="px-4 py-3">$$</td><td class="px-4 py-3">أبو بكر الصديق</td><td class="px-4 py-3 text-gray-600">أعلى عدد تقييمات، ساندويشات فطور</td></tr>
-                        <tr class="border-b hover:bg-gray-50 bg-gray-50"><td class="px-4 py-3">٨. أدهم</td><td class="px-4 py-3 text-green-600">4.6</td><td class="px-4 py-3">686</td><td class="px-4 py-3">٢٠–٤٠</td><td class="px-4 py-3">الملك خالد</td><td class="px-4 py-3 text-gray-600">V60 متميز، كيكة الجزر</td></tr>
-                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3">٩. أوان</td><td class="px-4 py-3 text-green-600 font-bold">4.8</td><td class="px-4 py-3">574</td><td class="px-4 py-3">١–٢٠</td><td class="px-4 py-3">-</td><td class="px-4 py-3 text-gray-600">أعلى تقييم، ٢٤ ساعة، درايف ثرو</td></tr>
-                        <tr class="border-b hover:bg-gray-50 bg-gray-50"><td class="px-4 py-3">١٠. قهوة آن Ann</td><td class="px-4 py-3 text-green-600">4.5</td><td class="px-4 py-3">404</td><td class="px-4 py-3">٢٠–٤٠</td><td class="px-4 py-3">قرطبة</td><td class="px-4 py-3 text-gray-600">قهوة اليوم بارد، هادئ بالنهار</td></tr>
-                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3">١١. لوكا</td><td class="px-4 py-3 text-green-600">4.3</td><td class="px-4 py-3">2,435</td><td class="px-4 py-3">٢٠–٤٠</td><td class="px-4 py-3">الإمام البخاري</td><td class="px-4 py-3 text-gray-600">٢٤ ساعة، شعبية واسعة</td></tr>
-                        <tr class="border-b hover:bg-gray-50 bg-gray-50"><td class="px-4 py-3">١٢. بيرسون PERSON</td><td class="px-4 py-3 text-red-600">3.9</td><td class="px-4 py-3">181</td><td class="px-4 py-3">١–٢٠</td><td class="px-4 py-3">الإمام مسلم</td><td class="px-4 py-3 text-gray-600">٢٤ ساعة، أسعار مناسبة جداً</td></tr>
-                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3">١٣. ليون كافيه</td><td class="px-4 py-3 text-green-600">4.3</td><td class="px-4 py-3">272</td><td class="px-4 py-3">٢٠–٤٠</td><td class="px-4 py-3">الملك عبد العزيز</td><td class="px-4 py-3 text-gray-600">أول مختصة بالقصيم، إطلالة</td></tr>
-                        <tr class="border-b hover:bg-gray-50 bg-gray-50"><td class="px-4 py-3">١٤. نورا كافي</td><td class="px-4 py-3 text-green-600">4.5</td><td class="px-4 py-3">203</td><td class="px-4 py-3">٢٠–٤٠</td><td class="px-4 py-3">علي بن أبي طالب</td><td class="px-4 py-3 text-gray-600">محاصيل مميزة، فرنش توست</td></tr>
-                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3">١٥. كوفنت Covent</td><td class="px-4 py-3 text-green-600">4.4</td><td class="px-4 py-3">34</td><td class="px-4 py-3">-</td><td class="px-4 py-3">الإسكان</td><td class="px-4 py-3 text-gray-600">جديد داخل مول الجديعي</td></tr>
+                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3" data-label="الكافيه">١. نمق Namq</td><td class="px-4 py-3 text-green-600" data-label="التقييم">4.4</td><td class="px-4 py-3" data-label="المراجعات">2,946</td><td class="px-4 py-3" data-label="السعر">٢٠–٤٠</td><td class="px-4 py-3" data-label="الحي">النهضة</td><td class="px-4 py-3 text-gray-600" data-label="أبرز نقطة قوة">علامة قوية، محمصة، ٢١٣ ألف متابع</td></tr>
+                        <tr class="border-b hover:bg-gray-50 bg-gray-50"><td class="px-4 py-3" data-label="الكافيه">٢. بوق</td><td class="px-4 py-3 text-green-600" data-label="التقييم">4.3</td><td class="px-4 py-3" data-label="المراجعات">2,249</td><td class="px-4 py-3" data-label="السعر">-</td><td class="px-4 py-3" data-label="الحي">أبو بكر الصديق</td><td class="px-4 py-3 text-gray-600" data-label="أبرز نقطة قوة">وافل متنوع، قهوة اليوم مميزة</td></tr>
+                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3" data-label="الكافيه">٣. كانتو CANTO</td><td class="px-4 py-3 text-green-600" data-label="التقييم">4.7</td><td class="px-4 py-3" data-label="المراجعات">1,501</td><td class="px-4 py-3" data-label="السعر">١–٢٠</td><td class="px-4 py-3" data-label="الحي">الأمير سلطان</td><td class="px-4 py-3 text-gray-600" data-label="أبرز نقطة قوة">سعر اقتصادي، فروع، إسبرسو ممتاز</td></tr>
+                        <tr class="border-b hover:bg-gray-50 bg-gray-50"><td class="px-4 py-3" data-label="الكافيه">٤. بريو BRIO</td><td class="px-4 py-3 text-green-600" data-label="التقييم">4.4</td><td class="px-4 py-3" data-label="المراجعات">888</td><td class="px-4 py-3" data-label="السعر">٢٠–٤٠</td><td class="px-4 py-3" data-label="الحي">أبو بكر الصديق</td><td class="px-4 py-3 text-gray-600" data-label="أبرز نقطة قوة">قهوة فخمة وحلى راقي، ٣ فروع</td></tr>
+                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3" data-label="الكافيه">٥. نورد كافيه</td><td class="px-4 py-3 text-green-600" data-label="التقييم">4.5</td><td class="px-4 py-3" data-label="المراجعات">898</td><td class="px-4 py-3" data-label="السعر">٢٠–٤٠</td><td class="px-4 py-3" data-label="الحي">الريان</td><td class="px-4 py-3 text-gray-600" data-label="أبرز نقطة قوة">بسبوسة مميزة، مكان رايق</td></tr>
+                        <tr class="border-b hover:bg-gray-50 bg-gray-50"><td class="px-4 py-3" data-label="الكافيه">٦. فكت Vekt</td><td class="px-4 py-3 text-green-600" data-label="التقييم">4.7</td><td class="px-4 py-3" data-label="المراجعات">833</td><td class="px-4 py-3" data-label="السعر">١–٢٠</td><td class="px-4 py-3" data-label="الحي">الملك سلمان</td><td class="px-4 py-3 text-gray-600" data-label="أبرز نقطة قوة">كوكيز مشهور، سعر منخفض</td></tr>
+                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3" data-label="الكافيه">٧. سمراء كافيه</td><td class="px-4 py-3 text-yellow-600" data-label="التقييم">4.0</td><td class="px-4 py-3 font-bold" data-label="المراجعات">4,057</td><td class="px-4 py-3" data-label="السعر">$$</td><td class="px-4 py-3" data-label="الحي">أبو بكر الصديق</td><td class="px-4 py-3 text-gray-600" data-label="أبرز نقطة قوة">أعلى عدد تقييمات، ساندويشات فطور</td></tr>
+                        <tr class="border-b hover:bg-gray-50 bg-gray-50"><td class="px-4 py-3" data-label="الكافيه">٨. أدهم</td><td class="px-4 py-3 text-green-600" data-label="التقييم">4.6</td><td class="px-4 py-3" data-label="المراجعات">686</td><td class="px-4 py-3" data-label="السعر">٢٠–٤٠</td><td class="px-4 py-3" data-label="الحي">الملك خالد</td><td class="px-4 py-3 text-gray-600" data-label="أبرز نقطة قوة">V60 متميز، كيكة الجزر</td></tr>
+                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3" data-label="الكافيه">٩. أوان</td><td class="px-4 py-3 text-green-600 font-bold" data-label="التقييم">4.8</td><td class="px-4 py-3" data-label="المراجعات">574</td><td class="px-4 py-3" data-label="السعر">١–٢٠</td><td class="px-4 py-3" data-label="الحي">-</td><td class="px-4 py-3 text-gray-600" data-label="أبرز نقطة قوة">أعلى تقييم، ٢٤ ساعة، درايف ثرو</td></tr>
+                        <tr class="border-b hover:bg-gray-50 bg-gray-50"><td class="px-4 py-3" data-label="الكافيه">١٠. قهوة آن Ann</td><td class="px-4 py-3 text-green-600" data-label="التقييم">4.5</td><td class="px-4 py-3" data-label="المراجعات">404</td><td class="px-4 py-3" data-label="السعر">٢٠–٤٠</td><td class="px-4 py-3" data-label="الحي">قرطبة</td><td class="px-4 py-3 text-gray-600" data-label="أبرز نقطة قوة">قهوة اليوم بارد، هادئ بالنهار</td></tr>
+                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3" data-label="الكافيه">١١. لوكا</td><td class="px-4 py-3 text-green-600" data-label="التقييم">4.3</td><td class="px-4 py-3" data-label="المراجعات">2,435</td><td class="px-4 py-3" data-label="السعر">٢٠–٤٠</td><td class="px-4 py-3" data-label="الحي">الإمام البخاري</td><td class="px-4 py-3 text-gray-600" data-label="أبرز نقطة قوة">٢٤ ساعة، شعبية واسعة</td></tr>
+                        <tr class="border-b hover:bg-gray-50 bg-gray-50"><td class="px-4 py-3" data-label="الكافيه">١٢. بيرسون PERSON</td><td class="px-4 py-3 text-red-600" data-label="التقييم">3.9</td><td class="px-4 py-3" data-label="المراجعات">181</td><td class="px-4 py-3" data-label="السعر">١–٢٠</td><td class="px-4 py-3" data-label="الحي">الإمام مسلم</td><td class="px-4 py-3 text-gray-600" data-label="أبرز نقطة قوة">٢٤ ساعة، أسعار مناسبة جداً</td></tr>
+                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3" data-label="الكافيه">١٣. ليون كافيه</td><td class="px-4 py-3 text-green-600" data-label="التقييم">4.3</td><td class="px-4 py-3" data-label="المراجعات">272</td><td class="px-4 py-3" data-label="السعر">٢٠–٤٠</td><td class="px-4 py-3" data-label="الحي">الملك عبد العزيز</td><td class="px-4 py-3 text-gray-600" data-label="أبرز نقطة قوة">أول مختصة بالقصيم، إطلالة</td></tr>
+                        <tr class="border-b hover:bg-gray-50 bg-gray-50"><td class="px-4 py-3" data-label="الكافيه">١٤. نورا كافي</td><td class="px-4 py-3 text-green-600" data-label="التقييم">4.5</td><td class="px-4 py-3" data-label="المراجعات">203</td><td class="px-4 py-3" data-label="السعر">٢٠–٤٠</td><td class="px-4 py-3" data-label="الحي">علي بن أبي طالب</td><td class="px-4 py-3 text-gray-600" data-label="أبرز نقطة قوة">محاصيل مميزة، فرنش توست</td></tr>
+                        <tr class="border-b hover:bg-gray-50"><td class="px-4 py-3" data-label="الكافيه">١٥. كوفنت Covent</td><td class="px-4 py-3 text-green-600" data-label="التقييم">4.4</td><td class="px-4 py-3" data-label="المراجعات">34</td><td class="px-4 py-3" data-label="السعر">-</td><td class="px-4 py-3" data-label="الحي">الإسكان</td><td class="px-4 py-3 text-gray-600" data-label="أبرز نقطة قوة">جديد داخل مول الجديعي</td></tr>
                     </tbody>
                 </table>
             </div>
